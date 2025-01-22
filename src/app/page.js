@@ -15,7 +15,12 @@ export default function Home() {
         compareDataLength={compareDataLength}
       />
       <TableContainer setComparisonData={setComparisonData} />
-      {showComparison && compareDataLength >= 2 && <ComparisonComponent />}
+      {showComparison && compareDataLength >= 2 && (
+        <ComparisonComponent
+          comparisonData={comparisonData}
+          setShowComparison={setShowComparison}
+        />
+      )}
     </div>
   );
 }

@@ -2,16 +2,23 @@
 import { useEffect, useState } from "react";
 import { jsonData } from "../jsondata";
 
-export default function ComparisonComponent() {
-  const [data, setData] = useState(jsonData);
+export default function ComparisonComponent({
+  comparisonData,
+  setShowComparison,
+}) {
+  const [data, setData] = useState([]);
   const [parameters, setParameters] = useState([]);
 
   useEffect(() => {
-    setParameters(Object.keys(data[0]));
+    console.log("comparisonData", comparisonData);
+    const dummy = Object.keys(comparisonData).map((el) => jsonData[+el]);
+    console.log("dummy", dummy);
+    setData(dummy);
+    setParameters(Object.keys(jsonData[0]));
   }, []);
   return (
-    <div>
-      <table>
+    <div className="comparison-popup ">
+      <table className="w-full">
         <thead>
           <tr></tr>
         </thead>
@@ -23,7 +30,7 @@ export default function ComparisonComponent() {
                 {data.map((car, carIndex) => (
                   <td key={carIndex}>
                     {typeof car[parameter] === "object"
-                      ? JSON.stringify(car[parameter])
+                      ? car[parameter]["average_rating"]
                       : car[parameter]}
                   </td>
                 ))}
@@ -31,6 +38,7 @@ export default function ComparisonComponent() {
             ))}
         </tbody>
       </table>
+      <button onClick={() => setShowComparison((prev) => !prev)}>Close</button>
     </div>
   );
 }
