@@ -12,6 +12,25 @@ export default function TableContainer() {
   const columns = useMemo(
     () => [
       {
+        id: "select-col",
+        header: ({ table }) => (
+          <input
+            type="checkbox"
+            checked={table.getIsAllRowsSelected()}
+            indeterminate={table.getIsSomeRowsSelected()}
+            onChange={table.getToggleAllRowsSelectedHandler()} //or getToggleAllPageRowsSelectedHandler
+          />
+        ),
+        cell: ({ row }) => (
+          <input
+            type="checkbox"
+            checked={row.getIsSelected()}
+            disabled={!row.getCanSelect()}
+            onChange={row.getToggleSelectedHandler()}
+          />
+        ),
+      },
+      {
         header: "Brand",
         accessorKey: "brand",
       },
@@ -35,10 +54,17 @@ export default function TableContainer() {
     []
   );
   const [data, setData] = useState(jsonData);
+  const [rowSelection, setRowSelection] = useState({});
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
+    onRowSelectionChange: setRowSelection,
+    state: {
+      rowSelection,
+    },
   });
-  return <TableComponent {...{table, flexRender}} />;
+
+  console.log(table.getSelectedRowModel().rows); //get full client-side selected rows
+  return <TableComponent {...{ table, flexRender }} />;
 }
