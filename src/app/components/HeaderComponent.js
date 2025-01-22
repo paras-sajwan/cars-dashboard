@@ -17,7 +17,7 @@ export default function HeaderComponent({
               <button
                 onClick={() => setShowComparison((prev) => !prev)}
                 disabled={compareDataLength < 2}
-                className={`compare-button px-8 py-3 ${
+                className={`compare-button cursor-pointer font-bold px-8 py-3 ${
                   compareDataLength < 2 ? "comapare-button-disabled" : ""
                 }`}
               >

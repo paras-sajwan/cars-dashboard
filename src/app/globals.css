@@ -28,13 +28,36 @@ body {
   width: 100%;
   height: 100%;
   z-index: 999;
-  background-color: #ffffff;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 2px 5px 8px rgb(230 230 230 / 62%);
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .comparison-popup td {
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid white;
+  padding: 20px;
 }
 
 .comparison-popup table {
   border-collapse: collapse;
+}
+
+.close-popup-button {
+  background-color: rgb(247, 93, 52);
+  border: none;
+  box-shadow: none;
+  color: rgb(255, 255, 255);
+}
+
+.comparison-popup table tr td:nth-child(2) {
+  background-color: #eaf0f4;
+}
+
+.comparison-popup table tr td:nth-child(3) {
+  background-color: #f6eaea;
+}
+
+.comparison-popup table tr td:nth-child(4) {
+  background-color: #fff4ea;
 }
