@@ -1,12 +1,21 @@
-import TableContainer from "./components/TableContainerComponent";
+"use client";
+import { useState, useEffect } from "react";
+import HeaderComponent from "./components/HeaderComponent";
+import TableContainer from "./components/TableContainer";
+import ComparisonComponent from "./components/ComparisonComponent";
 
 export default function Home() {
+  const [comparisonData, setComparisonData] = useState({});
+  const [showComparison, setShowComparison] = useState(false);
+  const compareDataLength = Object.keys(comparisonData).length;
   return (
-    <div className="container mx-auto px-4">
-      <div>
-        <h2>Cars comparison dashboard</h2>
-      </div>
-      <TableContainer />
+    <div className="container mx-auto relative">
+      <HeaderComponent
+        setShowComparison={setShowComparison}
+        compareDataLength={compareDataLength}
+      />
+      <TableContainer setComparisonData={setComparisonData} />
+      {showComparison && compareDataLength >= 2 && <ComparisonComponent />}
     </div>
   );
 }
