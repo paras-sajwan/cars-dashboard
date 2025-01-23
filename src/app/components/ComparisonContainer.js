@@ -11,8 +11,11 @@ export default function ComparisonContainer({
   const [parameters, setParameters] = useState([]);
 
   useEffect(() => {
-    const mappedData = Object.keys(comparisonData).map((el) => jsonData[+el]);
-    setData(mappedData);
+    if (comparisonData && Object.keys(comparisonData).length > 0) {
+      const mappedData = Object.keys(comparisonData).map((el) => jsonData[+el]);
+      setData(mappedData);
+    }
+
     setParameters(Object.keys(jsonData[0]));
   }, []);
   return (
