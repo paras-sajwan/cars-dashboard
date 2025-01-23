@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import HeaderComponent from "./components/HeaderComponent";
 import TableContainer from "./components/TableContainer";
-import ComparisonComponent from "./components/ComparisonComponent";
+import ComparisonContainer from "./components/ComparisonContainer";
 
 export default function Home() {
   const [comparisonData, setComparisonData] = useState({});
@@ -16,7 +16,7 @@ export default function Home() {
       />
       <TableContainer setComparisonData={setComparisonData} />
       {showComparison && compareDataLength >= 2 && (
-        <ComparisonComponent
+        <ComparisonContainer
           comparisonData={comparisonData}
           setShowComparison={setShowComparison}
         />
